@@ -17,12 +17,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity {
+public class RegistrationActivity extends AppCompatActivity {
 
     private EditText email;
     private EditText pass;
-    private Button btnLogin;
-    private TextView signUp;
+    private TextView signin;
+    private Button btnReg;
 
     private FirebaseAuth mAuth;
     private ProgressDialog mDialog;
@@ -30,58 +30,45 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_registration);
 
         mAuth=FirebaseAuth.getInstance();
-
-        if(mAuth.getCurrentUser()!=null){
-            startActivity(new Intent(getApplicationContext(),HomeActivity.class));
-
-        }
-
-
         mDialog=new ProgressDialog(this);
+        email=findViewById(R.id.email_reg);
+        pass=findViewById(R.id.password_reg);
+        btnReg=findViewById(R.id.btn_reg);
+        signin=findViewById(R.id.signin_txt);
 
 
-        email=findViewById(R.id.email_login);
-        pass=findViewById(R.id.password_login);
-        btnLogin=findViewById(R.id.btn_login);
-        signUp=findViewById(R.id.signup_txt);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        btnReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String mEmail=email.getText().toString().trim();
                 String mPass=pass.getText().toString().trim();
 
                 if(TextUtils.isEmpty(mEmail)){
-                    email.setError("Gerekli Alan");
+                    email.setError("Kayıt başarısız..");
                     return;
-
                 }
+
                 if(TextUtils.isEmpty(mPass)){
-                    pass.setError("Gerekli Alan");
+                    pass.setError("Kayıt başarısız..");
                     return;
 
                 }
-
                 mDialog.setMessage("İşleniyor..");
                 mDialog.show();
-
-                mAuth.signInWithEmailAndPassword(mEmail,mPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                mAuth.createUserWithEmailAndPassword(mEmail,mPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             startActivity(new Intent(getApplicationContext(),HomeActivity.class));
-                            Toast.makeText(getApplicationContext(),"Başarılı..",Toast.LENGTH_SHORT).show();
-
-
+                            Toast.makeText(getApplicationContext(),"Başarılı",Toast.LENGTH_SHORT).show();
                             mDialog.dismiss();
-                        }
-                        else{
 
-                            Toast.makeText(getApplicationContext(),"Başarısız..",Toast.LENGTH_SHORT).show();
 
+                         }else{
+                            Toast.makeText(getApplicationContext(),"Başarısız",Toast.LENGTH_SHORT).show();
                             mDialog.dismiss();
                         }
 
@@ -90,18 +77,21 @@ public class MainActivity extends AppCompatActivity {
                 });
 
 
-            }
+                }
+
+
+
+
         });
-        signUp.setOnClickListener(new View.OnClickListener() {
+
+
+
+        signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),RegistrationActivity.class));
-
-
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
             }
         });
-
-
 
     }
 }
