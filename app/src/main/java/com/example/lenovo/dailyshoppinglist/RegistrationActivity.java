@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -51,11 +55,14 @@ public class RegistrationActivity extends AppCompatActivity {
                     return;
                 }
 
-                if(TextUtils.isEmpty(mPass)){
+
+                if(TextUtils.isEmpty(mPass)&&!isValidPassword(pass.getText().toString())){
                     pass.setError("Kayıt başarısız..");
                     return;
 
                 }
+
+
                 mDialog.setMessage("İşleniyor..");
                 mDialog.show();
                 mAuth.createUserWithEmailAndPassword(mEmail,mPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -94,4 +101,18 @@ public class RegistrationActivity extends AppCompatActivity {
         });
 
     }
+    public static boolean isValidPassword(final String password) {
+
+        Pattern pattern;
+        Matcher matcher;
+        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*)(?=\\S+$).{4,}$";
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(password);
+
+        return matcher.matches();
+
+    }
+
+
+
 }

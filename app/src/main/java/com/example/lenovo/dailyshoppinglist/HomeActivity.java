@@ -86,21 +86,37 @@ public class HomeActivity extends AppCompatActivity {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 int totalamount=0;
 
-                for(DataSnapshot snap:dataSnapshot.getChildren()){
+                if(dataSnapshot.getChildrenCount()==0){
 
-                    Data data=snap.getValue(Data.class);
-                    totalamount+=data.getAmount();
-
-                    String sttotal=String.valueOf(totalamount+".00");
-
-                    totalsumResult.setText(sttotal);
+                   totalsumResult.setText("00.00");
 
 
                 }
+                else{
+
+
+                   for (DataSnapshot snap : dataSnapshot.getChildren()) {
+
+                       Data data = snap.getValue(Data.class);
+
+
+                       totalamount += data.getAmount();
+
+
+                           String sttotal = String.valueOf(totalamount + ".00");
+
+                           totalsumResult.setText(sttotal);
+
+
+
+
+                   }
             }
+               }
+
+
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
