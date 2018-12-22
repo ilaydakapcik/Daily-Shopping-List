@@ -10,8 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.lenovo.dailyshoppinglist.Model.Data;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.lang.reflect.Type;
+import java.text.DateFormat;
+import java.util.Date;
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -19,6 +28,9 @@ public class HomeActivity extends AppCompatActivity {
     private Toolbar toolbar;
 
     private FloatingActionButton fab_btn;
+
+    private DatabaseReference mDatabase;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +41,13 @@ public class HomeActivity extends AppCompatActivity {
         fab_btn= findViewById(R.id.fab);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Günlük Alışveriş Listesi");
+
+
+        mAuth=FirebaseAuth.getInstance();
+        FirebaseUser mUser=mAuth.getCurrentUser();
+        String uId=mUser.getUid();
+        mDatabase= FirebaseDatabase.getInstance().getReference().child("Shopping List").child(uId);
+
 
 
         fab_btn.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +78,9 @@ public class HomeActivity extends AppCompatActivity {
                 String mAmount=amount.getText().toString().trim();
                 String mNote=note.getText().toString().trim();
 
+                int amint=Integer.parseInt(mAmount);
+
+
                 if(TextUtils.isEmpty(mType)){
                     type.setError("Doldurulması Gerekli !");
                     return;
@@ -73,6 +95,14 @@ public class HomeActivity extends AppCompatActivity {
                     note.setError("Doldurulması Gerekli !");
                     return;
                 }
+
+
+                String id=mDatabase.push().getKey();
+                String date= DateFormat.getDateInstance().format(new Date());
+                Data data=new Data(mType,amint,mNote,date,id);
+                mDatabase.child(id).setValue(data);
+
+                Toast.makeText(getApplicationContext(),"Veri Eklendi",Toast.LENGTH_SHORT).show();
 
                 dialog.dismiss();
 
