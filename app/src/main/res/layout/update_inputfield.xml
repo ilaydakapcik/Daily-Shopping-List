@@ -152,7 +152,7 @@
                         android:layout_width="match_parent"
                         android:layout_margin="10dp"
                         android:background="@drawable/ed_design"
-                        android:text="KAYDET"
+                        android:text="GÜNCELLE"
                         android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="@android:color/white"
                         android:id="@+id/btn_SAVE_upd"

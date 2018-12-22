@@ -1,5 +1,7 @@
 package com.example.lenovo.dailyshoppinglist;
 
+import android.content.Intent;
+import android.content.res.Resources;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,6 +45,13 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
 
     private TextView totalsumResult;
+
+    //Yerel değişkenler
+
+    private String type;
+    private int amount;
+    private String note;
+    private String post_key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,7 +184,7 @@ public class HomeActivity extends AppCompatActivity {
 
                 ) {
             @Override
-            protected void populateViewHolder(MyViewHolder viewHolder, Data model, int position) {
+            protected void populateViewHolder(MyViewHolder viewHolder, final Data model, final int position) {
 
                 viewHolder.setDate(model.getDate());
                 viewHolder.setType(model.getType());
@@ -183,6 +194,13 @@ public class HomeActivity extends AppCompatActivity {
                 viewHolder.myview.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+
+                        post_key=getRef(position).getKey();
+                        type=model.getType();
+                        note=model.getNote();
+                        amount=model.getAmount();
+
+
                         updateData();
                     }
                 });
@@ -235,17 +253,85 @@ public class HomeActivity extends AppCompatActivity {
      public void updateData(){
         AlertDialog.Builder mydialog=new AlertDialog.Builder(HomeActivity.this);
 
-        LayoutInflater inflater=LayoutInflater.from(HomeActivity.this);
+        final LayoutInflater inflater=LayoutInflater.from(HomeActivity.this);
 
         View mView=inflater.inflate(R.layout.update_inputfield,null);
 
-        AlertDialog dialog=mydialog.create();
+        final AlertDialog dialog=mydialog.create();
         dialog.setView(mView);
+
+
+        final EditText edt_Type=mView.findViewById(R.id.edt_type_upd);
+        final EditText edt_Amount=mView.findViewById(R.id.edt_amount_upd);
+        final EditText edt_Note=mView.findViewById(R.id.edt_note_upd);
+
+        edt_Type.setText(type);
+        edt_Type.setSelection(type.length());
+        edt_Amount.setText(String.valueOf(amount));
+        edt_Amount.setSelection(String.valueOf(amount).length());
+        edt_Note.setText(note);
+        edt_Note.setSelection(note.length());
+
+        Button btnUpdate=mView.findViewById(R.id.btn_SAVE_upd);
+        Button btnDelete=mView.findViewById(R.id.btn_delete_upd);
+
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                type=edt_Type.getText().toString().trim();
+
+                String mAmount=String.valueOf(amount);
+
+                mAmount=edt_Amount.getText().toString().trim();
+
+                note=edt_Note.getText().toString().trim();
+
+                int intamount=Integer.parseInt(mAmount);
+
+                String date=DateFormat.getDateInstance().format(new Date());
+
+                Data data=new Data(type,intamount,note,date,post_key);
+
+                mDatabase.child(post_key).setValue(data);
+
+                dialog.dismiss();
+
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                mDatabase.child(post_key).removeValue();
+
+                dialog.dismiss();
+            }
+        });
+
+
         dialog.show();
 
      }
 
 
+     @Override
+     public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.log_out:
+                mAuth.signOut();
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
 
