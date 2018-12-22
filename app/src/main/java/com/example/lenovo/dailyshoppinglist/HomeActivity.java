@@ -77,6 +77,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 int totalamount=0;
+
                 for(DataSnapshot snap:dataSnapshot.getChildren()){
 
                     Data data=snap.getValue(Data.class);
@@ -179,6 +180,12 @@ public class HomeActivity extends AppCompatActivity {
                 viewHolder.setNote(model.getNote());
                 viewHolder.setAmount(model.getAmount());
 
+                viewHolder.myview.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateData();
+                    }
+                });
 
             }
         };
@@ -225,6 +232,18 @@ public class HomeActivity extends AppCompatActivity {
      }
 
 
+     public void updateData(){
+        AlertDialog.Builder mydialog=new AlertDialog.Builder(HomeActivity.this);
+
+        LayoutInflater inflater=LayoutInflater.from(HomeActivity.this);
+
+        View mView=inflater.inflate(R.layout.update_inputfield,null);
+
+        AlertDialog dialog=mydialog.create();
+        dialog.setView(mView);
+        dialog.show();
+
+     }
 
 
 
