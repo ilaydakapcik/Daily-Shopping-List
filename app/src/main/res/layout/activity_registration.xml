@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/back_design"
+    android:background="@drawable/giris"
     android:layout_height="match_parent"
     tools:context=".RegistrationActivity">
 
@@ -17,14 +17,7 @@
             android:orientation="vertical"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="KAYIT"
-                android:textColor="@android:color/white"
-                android:textAppearance="?android:textAppearanceLarge"
-                android:gravity="center"
-                />
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -37,6 +30,7 @@
                 android:textColor="@android:color/white"
                 android:id="@+id/email_reg"
                 />
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -65,9 +59,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:textAppearanceSmall"
-                android:text="Already have an account?Sign in here"
+                android:text="Hesabınız var mı?Giriş Yap"
                 android:gravity="center"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:padding="5dp"
                 android:id="@+id/signin_txt"
                 />

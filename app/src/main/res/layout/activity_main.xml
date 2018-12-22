@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/back_design"
+    android:background="@drawable/giris2"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
     <ScrollView
@@ -16,19 +16,11 @@
             android:orientation="vertical"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Log In"
-                android:textColor="@android:color/white"
-                android:textAppearance="?android:textAppearanceLarge"
-                android:gravity="center"
-                />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="Email:"
+                android:hint="E-posta:"
                 android:background="@drawable/ed_design"
                 android:padding="10dp"
                 android:inputType="textEmailAddress"
@@ -40,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="Password"
+                android:hint="Şifre:"
                 android:background="@drawable/ed_design"
                 android:padding="10dp"
                 android:inputType="textPassword"
@@ -53,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Log In"
+                android:text="Giriş"
                 android:background="@drawable/ed_design"
                 android:padding="6dp"
                 android:textAppearance="?android:textAppearanceMedium"
@@ -64,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:textAppearanceSmall"
-                android:text="Don't have an account?Sign up here"
+                android:text="Hesabınız yok mu?Hemen Kaydol"
                 android:gravity="center"
                 android:textColor="@android:color/white"
                 android:padding="5dp"

@@ -88,7 +88,7 @@
             app:fabSize="normal"
             android:id="@+id/fab"
             android:src="@drawable/plus"
-            android:backgroundTint="#FFFF8940"
+            android:backgroundTint="#000000"
             />
 
 
