@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#000000</color>
 
+
+    <color name="girisbtn">#ededd9be</color>
+    <color name="kayıtbtn">#A9d440</color>
 </resources>
