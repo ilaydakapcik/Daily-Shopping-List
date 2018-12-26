@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:68759044092:android:3b6ac96d8b6d8dae",
         "android_client_info": {
-          "package_name": "com.example.lenovo.dailyshoppinglist"
+          "package_name": "com.hesapdefterim.lenovo.dailyshoppinglist"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "68759044092-gugmpmeapfc3c7uee36thkuji90pk8sj.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.lenovo.dailyshoppinglist",
+            "package_name": "com.hesapdefterim.lenovo.dailyshoppinglist",
             "certificate_hash": "e8fd98a1a0ca25ee02e746435cd1eb31ec3914b9"
           }
         },

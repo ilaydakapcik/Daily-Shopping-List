@@ -1,4 +1,4 @@
-package com.example.lenovo.dailyshoppinglist;
+package com.hesapdefterim.lenovo.dailyshoppinglist;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -55,17 +55,17 @@ public class MainActivity extends AppCompatActivity {
                 String mPass=pass.getText().toString().trim();
 
                 if(TextUtils.isEmpty(mEmail)){
-                    email.setError("Gerekli Alan");
+                    email.setError("Gerekli Alan !");
                     return;
 
                 }
                 if(TextUtils.isEmpty(mPass)){
-                    pass.setError("Gerekli Alan");
+                    pass.setError("Gerekli Alan !");
                     return;
 
                 }
 
-                mDialog.setMessage("İşleniyor..");
+                mDialog.setMessage("Yükleniyor..");
                 mDialog.show();
 
                 mAuth.signInWithEmailAndPassword(mEmail,mPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -73,14 +73,14 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             startActivity(new Intent(getApplicationContext(),HomeActivity.class));
-                            Toast.makeText(getApplicationContext(),"Başarılı..",Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(getApplicationContext(),"Başarılı..",Toast.LENGTH_SHORT).show();
 
 
                             mDialog.dismiss();
                         }
                         else{
 
-                            Toast.makeText(getApplicationContext(),"Başarısız..",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"Başarısız !",Toast.LENGTH_SHORT).show();
 
                             mDialog.dismiss();
                         }

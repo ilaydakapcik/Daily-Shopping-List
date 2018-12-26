@@ -4,7 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -18,7 +19,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/back_design"
+                android:background="#2d5139"
                 android:text="Alışveriş Listesi Ekle"
                 android:gravity="center"
                 android:textAppearance="?android:textAppearanceMedium"
@@ -37,22 +38,25 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Tip:"
+                        android:text="Türü:"
                         android:layout_margin="10dp"
                         android:textAppearance="?android:textAppearanceMedium"
                         />
+
 
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:padding="10dp"
                     android:layout_weight="2">
-                    <EditText
+
+                    <Spinner
+                        android:id="@+id/spinner"
                         android:layout_width="match_parent"
-                        android:layout_margin="10dp"
-                        android:id="@+id/edt_type"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="match_parent"
+                        android:paddingTop="10dp"></Spinner>
 
                 </RelativeLayout>
 
@@ -122,7 +126,10 @@
 
                 </RelativeLayout>
 
+
+
             </LinearLayout>
+
 
             <Button
                 android:layout_width="match_parent"

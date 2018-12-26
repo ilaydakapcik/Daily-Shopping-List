@@ -1,4 +1,4 @@
-package com.example.lenovo.dailyshoppinglist;
+package com.hesapdefterim.lenovo.dailyshoppinglist;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

@@ -1,4 +1,4 @@
-package com.example.lenovo.dailyshoppinglist;
+package com.hesapdefterim.lenovo.dailyshoppinglist;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -51,13 +51,13 @@ public class RegistrationActivity extends AppCompatActivity {
                 String mPass=pass.getText().toString().trim();
 
                 if(TextUtils.isEmpty(mEmail)){
-                    email.setError("Kayıt başarısız..");
+                    email.setError("Kayıt başarısız !");
                     return;
                 }
 
 
                 if(TextUtils.isEmpty(mPass)&&!isValidPassword(pass.getText().toString())){
-                    pass.setError("Kayıt başarısız..");
+                    pass.setError("Kayıt başarısız !");
                     return;
 
                 }
@@ -70,12 +70,12 @@ public class RegistrationActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             startActivity(new Intent(getApplicationContext(),HomeActivity.class));
-                            Toast.makeText(getApplicationContext(),"Başarılı",Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(getApplicationContext(),"Başarılı",Toast.LENGTH_SHORT).show();
                             mDialog.dismiss();
 
 
                          }else{
-                            Toast.makeText(getApplicationContext(),"Başarısız",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"Başarısız !",Toast.LENGTH_SHORT).show();
                             mDialog.dismiss();
                         }
 

@@ -1,5 +1,6 @@
-package com.example.lenovo.dailyshoppinglist;
+package com.hesapdefterim.lenovo.dailyshoppinglist;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.support.design.widget.FloatingActionButton;
@@ -13,13 +14,17 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.lenovo.dailyshoppinglist.Model.Data;
+import com.hesapdefterim.lenovo.dailyshoppinglist.Model.Data;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,14 +36,17 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.lang.reflect.Type;
 import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+
 
     private Toolbar toolbar;
 
     private FloatingActionButton fab_btn;
+
 
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
@@ -61,7 +69,12 @@ public class HomeActivity extends AppCompatActivity {
         toolbar=findViewById(R.id.home_toolbar);
         fab_btn= findViewById(R.id.fab);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Günlük Alışveriş Listesi");
+        getSupportActionBar().setTitle("");
+
+
+
+
+
 
 
         totalsumResult=findViewById(R.id.total_amount);
@@ -140,25 +153,34 @@ public class HomeActivity extends AppCompatActivity {
         final AlertDialog dialog=mydialog.create();
         dialog.setView(myview);
 
-        final EditText type=myview.findViewById(R.id.edt_type);
+        final Spinner spinner=myview.findViewById(R.id.spinner);
         final EditText amount=myview.findViewById(R.id.edt_amount);
         final EditText note=myview.findViewById(R.id.edt_note);
+
         Button btnSave =myview.findViewById(R.id.btn_save);
+
+        ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this,R.array.Tür,android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+
+
+
+
+
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                String mType= type.getText().toString().trim();
+
+                String mType= spinner.getSelectedItem().toString().trim();
                 String mAmount=amount.getText().toString().trim();
                 String mNote=note.getText().toString().trim();
 
                 int amint=Integer.parseInt(mAmount);
 
 
-                if(TextUtils.isEmpty(mType)){
-                    type.setError("Doldurulması Gerekli !");
-                    return;
-                    }
+
 
                 if(TextUtils.isEmpty(mAmount)){
                     amount.setError("Doldurulması Gerekli !");
@@ -176,7 +198,7 @@ public class HomeActivity extends AppCompatActivity {
                 Data data=new Data(mType,amint,mNote,date,id);
                 mDatabase.child(id).setValue(data);
 
-                Toast.makeText(getApplicationContext(),"Veri Eklendi",Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getApplicationContext(),"Veri Eklendi",Toast.LENGTH_SHORT).show();
 
                 dialog.dismiss();
 
@@ -229,7 +251,20 @@ public class HomeActivity extends AppCompatActivity {
 
      }
 
-     public static class MyViewHolder extends RecyclerView.ViewHolder{
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        String text=parent.getItemAtPosition(position).toString();
+        //Toast.makeText(parent.getContext(),text,Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         View myview;
 
@@ -277,12 +312,18 @@ public class HomeActivity extends AppCompatActivity {
         dialog.setView(mView);
 
 
-        final EditText edt_Type=mView.findViewById(R.id.edt_type_upd);
+        final TextView edt_Type=mView.findViewById(R.id.edt_type_upd);
+
         final EditText edt_Amount=mView.findViewById(R.id.edt_amount_upd);
         final EditText edt_Note=mView.findViewById(R.id.edt_note_upd);
+        ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this,R.array.Tür,android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        edt_Type.setText(type);
-        edt_Type.setSelection(type.length());
+
+
+         edt_Type.setText(type);
+         //edt_Type.setSelection(type.length());
+
         edt_Amount.setText(String.valueOf(amount));
         edt_Amount.setSelection(String.valueOf(amount).length());
         edt_Note.setText(note);
@@ -291,9 +332,12 @@ public class HomeActivity extends AppCompatActivity {
         Button btnUpdate=mView.findViewById(R.id.btn_SAVE_upd);
         Button btnDelete=mView.findViewById(R.id.btn_delete_upd);
 
+
+
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
                 type=edt_Type.getText().toString().trim();
 

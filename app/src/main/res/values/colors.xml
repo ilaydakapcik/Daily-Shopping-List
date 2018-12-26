@@ -4,7 +4,9 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#000000</color>
 
+    <color name="üsttaraf">#ed0d3315</color>
 
-    <color name="girisbtn">#ededd9be</color>
+    <color name="girisbtn">#edd8d1c9</color>
     <color name="kayıtbtn">#A9d440</color>
+    <color name="tutar">#EDA6CAC8</color>
 </resources>

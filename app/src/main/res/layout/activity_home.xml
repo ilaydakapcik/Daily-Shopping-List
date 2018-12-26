@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/list"
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
@@ -42,6 +43,8 @@
                             android:layout_height="wrap_content"
                             android:text="Toplam Tutar:"
                             android:padding="10dp"
+                            android:textColor="@android:color/white"
+                            android:background="@drawable/back_design"
                             android:textAppearance="?android:textAppearanceMedium">
 
                         </TextView>
@@ -56,6 +59,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="00.00"
+                            android:textColor="@android:color/white"
+                            android:background="@drawable/back_design"
                             android:id="@+id/total_amount"
                             android:padding="10dp"
                             android:textAppearance="?android:textAppearanceMedium">
@@ -85,10 +90,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="15dp"
+
             app:fabSize="normal"
             android:id="@+id/fab"
             android:src="@drawable/plus"
-            android:backgroundTint="#000000"
+            android:backgroundTint="#2d5139"
             />
 
 

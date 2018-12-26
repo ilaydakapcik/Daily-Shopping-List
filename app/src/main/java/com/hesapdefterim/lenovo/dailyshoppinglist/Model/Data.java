@@ -1,4 +1,4 @@
-package com.example.lenovo.dailyshoppinglist.Model;
+package com.hesapdefterim.lenovo.dailyshoppinglist.Model;
 
 public class Data {
 

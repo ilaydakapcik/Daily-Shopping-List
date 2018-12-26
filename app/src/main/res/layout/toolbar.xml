@@ -2,9 +2,13 @@
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/back_design"
+    android:background="@drawable/usttaraf"
     app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Dark"
     android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
     android:layout_height="wrap_content">
+
+
+
+
 
 </android.support.v7.widget.Toolbar>

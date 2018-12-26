@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">Daily Shopping List</string>
+    <string name="app_name">Hesap Defterim</string>
+
+
+    <string-array name="Tür">
+        <item>Kişisel Bakım</item>
+        <item>Elektronik</item>
+        <item>Gıda</item>
+        <item>Giyim</item>
+        <item>Temizlik Malzemesi</item>
+        <item>Kırtasiye</item>
+        <item>Beyaz Eşya</item>
+        <item>Aksesuar</item>
+        <item>Diğer</item>
+
+
+    </string-array>
 </resources>

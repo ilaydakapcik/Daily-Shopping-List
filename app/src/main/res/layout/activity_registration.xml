@@ -48,7 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="KAYIT OL"
+                android:text="Kayıt Ol"
                 android:background="@drawable/ed_design"
                 android:padding="6dp"
                 android:textAppearance="?android:textAppearanceMedium"

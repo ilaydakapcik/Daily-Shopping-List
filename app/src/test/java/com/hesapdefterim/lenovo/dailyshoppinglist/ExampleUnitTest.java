@@ -1,4 +1,4 @@
-package com.example.lenovo.dailyshoppinglist;
+package com.hesapdefterim.lenovo.dailyshoppinglist;
 
 import org.junit.Test;
 

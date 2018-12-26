@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:padding="10dp"
+        android:background="@color/girisbtn"
         android:layout_height="wrap_content">
 
         <RelativeLayout
@@ -24,9 +25,9 @@
                 android:layout_height="wrap_content"
                 android:text="16 Sep,2018"
                 android:padding="10dp"
-                android:textAppearance="?android:textAppearanceSmall"
+                android:textAppearance="?android:textAppearanceMedium"
                 android:id="@+id/date"
-                android:textColor="#FFB640FF"
+                android:textColor="#12341d"
 
 
                 />
